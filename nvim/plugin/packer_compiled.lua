@@ -94,6 +94,12 @@ _G.packer_plugins = {
     path = "/home/aj/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["codeium.vim"] = {
+    config = { "\27LJ\2\n-\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\19codeium#Accept\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2\1\0D\0\2\0\29codeium#CycleCompletions\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2ÿÿD\0\2\0\29codeium#CycleCompletions\afn\bvim,\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\18codeium#Clear\afn\bvimÜ\1\1\0\6\0\16\0!6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\a\0003\4\b\0005\5\t\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\n\0003\4\v\0005\5\f\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\r\0003\4\14\0005\5\15\0B\0\5\1K\0\1\0\1\0\1\texpr\2\0\n<c-x>\1\0\1\texpr\2\0\n<c-,>\1\0\1\texpr\2\0\n<c-;>\1\0\1\texpr\2\0\n<c-l>\6i\bset\vkeymap\bvim\0" },
+    loaded = true,
+    path = "/home/aj/.local/share/nvim/site/pack/packer/start/codeium.vim",
+    url = "https://github.com/Exafunction/codeium.vim"
+  },
   fd = {
     loaded = true,
     path = "/home/aj/.local/share/nvim/site/pack/packer/start/fd",
@@ -136,6 +142,12 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/aj/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
+  ["marks.nvim"] = {
+    config = { "\27LJ\2\nL\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\21default_mappings\2\nsetup\nmarks\frequire\0" },
+    loaded = true,
+    path = "/home/aj/.local/share/nvim/site/pack/packer/start/marks.nvim",
+    url = "https://github.com/chentoast/marks.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -267,6 +279,18 @@ time([[Defining packer_plugins]], false)
 time([[Setup for markdown-preview.nvim]], true)
 try_loadstring("\27LJ\2\n=\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "setup", "markdown-preview.nvim")
 time([[Setup for markdown-preview.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
+-- Config for: codeium.vim
+time([[Config for codeium.vim]], true)
+try_loadstring("\27LJ\2\n-\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\19codeium#Accept\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2\1\0D\0\2\0\29codeium#CycleCompletions\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2ÿÿD\0\2\0\29codeium#CycleCompletions\afn\bvim,\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\18codeium#Clear\afn\bvimÜ\1\1\0\6\0\16\0!6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\a\0003\4\b\0005\5\t\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\n\0003\4\v\0005\5\f\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\r\0003\4\14\0005\5\15\0B\0\5\1K\0\1\0\1\0\1\texpr\2\0\n<c-x>\1\0\1\texpr\2\0\n<c-,>\1\0\1\texpr\2\0\n<c-;>\1\0\1\texpr\2\0\n<c-l>\6i\bset\vkeymap\bvim\0", "config", "codeium.vim")
+time([[Config for codeium.vim]], false)
+-- Config for: marks.nvim
+time([[Config for marks.nvim]], true)
+try_loadstring("\27LJ\2\nL\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\21default_mappings\2\nsetup\nmarks\frequire\0", "config", "marks.nvim")
+time([[Config for marks.nvim]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
 try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
@@ -275,10 +299,6 @@ time([[Config for toggleterm.nvim]], false)
 time([[Config for nvim-comment]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17nvim_comment\frequire\0", "config", "nvim-comment")
 time([[Config for nvim-comment]], false)
--- Config for: rose-pine
-time([[Config for rose-pine]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
-time([[Config for rose-pine]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
