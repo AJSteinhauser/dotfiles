@@ -5,6 +5,9 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  use {'lambdalisue/glyph-palette.vim'}
+  use {'TheLeoP/fern-renderer-web-devicons.nvim'}
+  use {'nvim-tree/nvim-web-devicons'}
   use {'chentoast/marks.nvim', config = function() require('marks').setup({default_mappings = true}) end}
   use {
   'Exafunction/codeium.vim',
@@ -26,7 +29,6 @@ return require('packer').startup(function(use)
   use({"terrortylor/nvim-comment", config = function() require('nvim_comment').setup() end})
   use "lukas-reineke/indent-blankline.nvim"
   use 'wbthomason/packer.nvim'
-  use 'nvim-tree/nvim-web-devicons'
   use('folke/trouble.nvim')
   use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
   use { 'joeveiga/ng.nvim'}
