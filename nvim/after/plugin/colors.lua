@@ -6,4 +6,5 @@ function ColorMyPencils(Color)
     
 end
 
-ColorMyPencils()
+-- vim.cmd.colorscheme "catppuccin"
+--ColorMyPencils()

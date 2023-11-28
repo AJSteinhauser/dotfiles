@@ -5,6 +5,8 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  use {'RRethy/nvim-base16'}
+  use {'lewis6991/gitsigns.nvim'}
   use {'lambdalisue/glyph-palette.vim'}
   use {'TheLeoP/fern-renderer-web-devicons.nvim'}
   use {'nvim-tree/nvim-web-devicons'}
