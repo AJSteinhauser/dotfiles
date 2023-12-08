@@ -5,6 +5,10 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  use({
+      'nvimdev/lspsaga.nvim',
+      after = 'nvim-lspconfig',
+  })
   use {'RRethy/nvim-base16'}
   use {'lewis6991/gitsigns.nvim'}
   use {'lambdalisue/glyph-palette.vim'}
@@ -12,15 +16,15 @@ return require('packer').startup(function(use)
   use {'nvim-tree/nvim-web-devicons'}
   use {'chentoast/marks.nvim', config = function() require('marks').setup({default_mappings = true}) end}
   use {
-  'Exafunction/codeium.vim',
-  config = function ()
-    -- Change '<C-g>' here to any keycode you like.
-    vim.keymap.set('i', '<c-l>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-    vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-    vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  end
-}
+      ('Exafunction/codeium.vim'),
+      config = function ()
+          -- Change '<C-g>' here to any keycode you like.
+          vim.keymap.set('i', '<c-l>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+          vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+          vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+          vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+      end
+  }
   use({'lewis6991/gitsigns.nvim',config = function() require('gitsigns').setup() end})
   use 'APZelos/blamer.nvim'
   use 'windwp/nvim-autopairs'
