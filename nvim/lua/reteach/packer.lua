@@ -5,10 +5,13 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use({
-      'nvimdev/lspsaga.nvim',
-      after = 'nvim-lspconfig',
-  })
+  use { "0oAstro/dim.lua",
+      requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+      config = function()
+          require('dim').setup({})
+      end
+  }
+  use {'dstein64/vim-startuptime'}
   use {'RRethy/nvim-base16'}
   use {'lewis6991/gitsigns.nvim'}
   use {'lambdalisue/glyph-palette.vim'}
