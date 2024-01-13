@@ -5,6 +5,12 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  use {'kevinhwang91/nvim-bqf'}
+  
+  use {'junegunn/fzf', run = function()
+          vim.fn['fzf#install']()
+      end
+    }
   use { "0oAstro/dim.lua",
       requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
       config = function()

@@ -33,3 +33,19 @@ source <(ng completion script)
 alias cdusr="cd /mnt/c/Users/aj.steinhuser/"
 alias lockstart="node --openssl-legacy-provider --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng serve"
 export PATH="$PATH:/opt/mssql-tools18/bin"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/aj/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/aj/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/aj/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/aj/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
