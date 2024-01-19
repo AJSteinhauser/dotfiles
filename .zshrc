@@ -49,3 +49,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# plugins+=(zsh-vi-mode)
+set -o vi
