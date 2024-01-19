@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
   use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
   use { 'joeveiga/ng.nvim'}
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.5',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim','sharkdp/fd'} }
   }
