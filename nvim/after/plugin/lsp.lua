@@ -69,9 +69,9 @@ vim.diagnostic.config({
 })
 
 
-require("lspconfig").lua_ls.setup({
-    cmd = {"lua-language-server", "-E", os.getenv("HOME") .. "/.config/nvim/robloxSpecific/lsp/server/main.lua"}
-})
+-- require("lspconfig").lua_ls.setup({
+--     cmd = {"lua-language-server", "-E", os.getenv("HOME") .. "/.config/nvim/robloxSpecific/lsp/server/main.lua"}
+-- })
 
 lsp.setup()
 

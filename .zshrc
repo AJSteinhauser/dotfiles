@@ -32,6 +32,7 @@ source <(ng completion script)
 #Aliases
 alias cdusr="cd /mnt/c/Users/aj.steinhuser/"
 alias lockstart="node --openssl-legacy-provider --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng serve"
+alias lockstart-local="node --openssl-legacy-provider --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng serve"
 export PATH="$PATH:/opt/mssql-tools18/bin"
 
 # >>> conda initialize >>>
