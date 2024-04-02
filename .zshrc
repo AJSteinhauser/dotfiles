@@ -33,7 +33,11 @@ source <(ng completion script)
 alias cdusr="cd /mnt/c/Users/aj.steinhuser/"
 alias lockstart="node --openssl-legacy-provider --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng serve"
 alias lockstart-local="node --openssl-legacy-provider --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng serve"
+alias grep='grep --color=always'
+
 export PATH="$PATH:/opt/mssql-tools18/bin"
+export CHROME_BIN='/mnt/c/Program\ Files/Google/Chrome/chrome.exe'
+export NODE_OPTIONS=--openssl-legacy-provider
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -52,3 +56,6 @@ unset __conda_setup
 
 # plugins+=(zsh-vi-mode)
 set -o vi
+
+
+

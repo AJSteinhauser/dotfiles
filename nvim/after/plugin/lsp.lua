@@ -68,6 +68,11 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
+-- require('lspconfig').tsserver.setup({
+--    init_options = {
+--      preferences = { includeCompletionsForModuleExports = false }
+--    }
+-- })
 
 -- require("lspconfig").lua_ls.setup({
 --     cmd = {"lua-language-server", "-E", os.getenv("HOME") .. "/.config/nvim/robloxSpecific/lsp/server/main.lua"}
