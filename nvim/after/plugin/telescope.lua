@@ -1,15 +1,23 @@
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>of', function()
-    builtin.find_files{ path_display = { "tail" } }
+    builtin.find_files{}
 end)
 vim.keymap.set('n', '<leader>pf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
-	builtin.live_grep({ path_display = {"tail"} })
+	builtin.live_grep({path_display = {"tail"}})
 end)
 
 vim.keymap.set('n', '<leader>p*', function()
     builtin.grep_string({search = vim.fn.expand("<cword>")})
 end)
+
+vim.keymap.set('n', '<leader>p*', function()
+    builtin.grep_string({search = vim.fn.expand("<cword>")})
+end)
+
+-- vim.keymap.set('n', '<leader>vc', function()
+--     builtin.lsp_references({ path_display = {"tail"} })
+-- end)
 
 local previewers = require('telescope.previewers')
 
