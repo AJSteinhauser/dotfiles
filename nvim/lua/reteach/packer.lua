@@ -1,5 +1,4 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -16,6 +15,20 @@ return require('packer').startup(function(use)
       config = function()
           require('dim').setup({})
       end
+  }
+  use { "rcarriga/nvim-dap-ui",
+      requires = {
+          "mfussenegger/nvim-dap",
+          "nvim-neotest/nvim-nio",
+          "rcarriga/nvim-dap-ui",
+          "theHamsta/nvim-dap-virtual-text"
+      }
+  }
+  use { "tpope/vim-dadbod",
+      requires = {
+          "kristijanhusak/vim-dadbod-completion",
+          "kristijanhusak/vim-dadbod-ui",
+      }
   }
   use {'dstein64/vim-startuptime'}
   use {'RRethy/nvim-base16'}

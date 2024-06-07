@@ -40,6 +40,7 @@ export PATH="$PATH:/opt/mssql-tools18/bin"
 export CHROME_BIN='/mnt/c/Program\ Files/Google/Chrome/chrome.exe'
 export NODE_OPTIONS=--openssl-legacy-provider
 export PATH=$PATH:/home/aj/.dotnet
+export DOTNET_ROOT=/snap/dotnet-sdk/current
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
