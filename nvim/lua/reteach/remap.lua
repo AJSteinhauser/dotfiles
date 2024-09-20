@@ -76,4 +76,4 @@ vim.keymap.set("n", "<leader>v", "<c-v>")
 -- end
 
 ---Disable mouse
-vim.opt.mouse = nil
+-- vim.opt.mouse = nil

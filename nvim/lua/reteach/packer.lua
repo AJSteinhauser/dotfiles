@@ -4,8 +4,9 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  use 'ThePrimeagen/vim-apm'
+  use {"OXY2DEV/markview.nvim"}
   use {'kevinhwang91/nvim-bqf'}
-  
   use {'junegunn/fzf', run = function()
           vim.fn['fzf#install']()
       end
@@ -32,9 +33,7 @@ return require('packer').startup(function(use)
   }
   use {'dstein64/vim-startuptime'}
   use {'RRethy/nvim-base16'}
-  use {'lewis6991/gitsigns.nvim'}
   use {'lambdalisue/glyph-palette.vim'}
-  use {'TheLeoP/fern-renderer-web-devicons.nvim'}
   use {'nvim-tree/nvim-web-devicons'}
   use {'chentoast/marks.nvim', config = function() require('marks').setup({default_mappings = true}) end}
   use {
@@ -57,7 +56,6 @@ return require('packer').startup(function(use)
   use({"terrortylor/nvim-comment", config = function() require('nvim_comment').setup() end})
   use "lukas-reineke/indent-blankline.nvim"
   use 'wbthomason/packer.nvim'
-  use('folke/trouble.nvim')
   use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
   use { 'joeveiga/ng.nvim'}
   use {
@@ -66,8 +64,9 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim','sharkdp/fd'} }
   }
   use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
+  use({'folke/trouble.nvim', commit='2ea761f'})
   use({ "elgiano/nvim-treesitter-angular", branch = "topic/jsx-fix" })
-  use({ 
+  use({
 	  'rose-pine/neovim',
 	  as = 'rose-pine', 
 	  config = function()
@@ -94,17 +93,18 @@ return require('packer').startup(function(use)
           -- LSP Support
           {'neovim/nvim-lspconfig'},             -- Required
           {                                      -- Optional
-          'williamboman/mason.nvim',
-          run = function()
-              pcall(vim.api.nvim_command, 'MasonUpdate')
-          end,
-      },
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+              'williamboman/mason.nvim',
+              run = function()
+                  pcall(vim.api.nvim_command, 'MasonUpdate')
+              end,
+          },
+          {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'}     -- Required
-  }
-}
+          {'hrsh7th/nvim-cmp'},     -- Required
+          {'hrsh7th/cmp-nvim-lsp'}, -- Required
+          {'L3MON4D3/LuaSnip'}     -- Required
+      }
+    }
+    use{'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end}
 end)

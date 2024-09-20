@@ -22,7 +22,11 @@ dap.configurations.cs = {
   },
 }
 
-dap.defaults.fallback.exception_breakpoints = {'raised'}
+
+-- require('dap').defaults.fallback.exception_breakpoints = {'uncaught'}
+-- dap.defaults.fallback.exception_breakpoints = {'uncaught'}
+-- dap.set_exception_breakpoints("default")
+
 
 vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
@@ -32,11 +36,13 @@ vim.keymap.set("n", "<space>?", function()
     require("dapui").eval(nil, { enter = true })
 end)
 
-vim.keymap.set("n", "<C-F1>", dap.continue)
-vim.keymap.set("n", "<C-F2>", dap.step_into)
-vim.keymap.set("n", "<C-F3>", dap.step_over)
-vim.keymap.set("n", "<C-F4>", dap.step_out)
-vim.keymap.set("n", "<C-F5>", dap.step_back)
+
+vim.keymap.set("n", "<C-Bslash>", dap.continue)
+vim.keymap.set("n", "<C-Down>", dap.step_into)
+vim.keymap.set("n", "<C-Right>", dap.step_over)
+vim.keymap.set("n", "<C-Up>", dap.step_out)
+vim.keymap.set("n", "<C-Left>", dap.step_back)
+vim.keymap.set("n", "<C-F10>", dap.set_exception_breakpoints)
 vim.keymap.set("n", "<C-F12>", dap.restart)
 
 dap.listeners.before.attach.dapui_config = function()

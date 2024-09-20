@@ -3,7 +3,7 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'tsserver', 'luau_lsp'
+    'luau_lsp'
 })
 
 -- Fix Undefined global 'vim'
