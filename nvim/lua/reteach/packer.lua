@@ -4,8 +4,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'ThePrimeagen/vim-apm'
-  use {"OXY2DEV/markview.nvim"}
+
   use {'kevinhwang91/nvim-bqf'}
   use {'junegunn/fzf', run = function()
           vim.fn['fzf#install']()
@@ -63,7 +62,7 @@ return require('packer').startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim','sharkdp/fd'} }
   }
-  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
+  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', commit="a8535b2"})
   use({'folke/trouble.nvim', commit='2ea761f'})
   use({ "elgiano/nvim-treesitter-angular", branch = "topic/jsx-fix" })
   use({
