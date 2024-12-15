@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("x", "<leader>p", "\"_dp")
@@ -25,4 +24,3 @@ vim.cmd[[tnoremap <C-w>k <C-\><C-n><C-w>k]]
 
 vim.keymap.set("n", "<leader>pwd", ":call setreg('+', expand('%'))<enter>")
 vim.keymap.set("n", "<leader>v", "<c-v>")
-

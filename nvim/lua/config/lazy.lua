@@ -13,8 +13,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
-
-
+vim.keymap.set("n", "<leader>l", ":Lazy<Enter>")
 
 return require("lazy").setup({
   spec = {
@@ -27,3 +26,4 @@ return require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
