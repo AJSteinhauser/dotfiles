@@ -1,6 +1,5 @@
-require("reteach.remap")
-require("reteach.set")
-
---vim.cmd[[autocmd BufLeave,FocusLost * silent! wall]]
-vim.cmd[[inoremap <expr> <TAB> pumvisible() ? "<C-y>" : "<TAB>"]]
+vim.opt.termguicolors = true
+require('config.options.defaults')
+require('config.remapping.universal')
+require('config.lazy')
 
