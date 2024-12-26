@@ -2,52 +2,62 @@ return {
     {
         {
             'nvim-telescope/telescope.nvim', tag = '0.1.8',
-            dependencies = { 
+            dependencies = {
                 'nvim-lua/plenary.nvim',
-                'nvim-tree/nvim-web-devicons'
+                'nvim-tree/nvim-web-devicons',
+                'axkirillov/telescope-changed-files'
             },
             config = function()
-                local builtin = require('telescope.builtin')
-                vim.keymap.set('n', '<leader>of', function()
-                    builtin.find_files{}
-                end)
-                vim.keymap.set('n', '<leader>pf', builtin.git_files, {})
-                vim.keymap.set('n', '<leader>ps', function()
-                    builtin.live_grep({path_display = {"tail"}})
-                end)
-
-                vim.keymap.set('n', '<leader>p*', function()
-                    builtin.grep_string({search = vim.fn.expand("<cword>")})
-                end)
-
-                vim.keymap.set('n', '<leader>p*', function()
-                    builtin.grep_string({search = vim.fn.expand("<cword>")})
-                end)
-
-
-                local previewController = require('telescope.previewers')
-
-                local lineController = function(filepath, bufnr, opts)
-                    opts = opts or {}
-
-                    filepath = vim.fn.expand(filepath)
-                    vim.loop.fs_stat(filepath, function(_, stat)
-                        if not stat then return end
-                        if stat.size > 20000 then
-                            return
-                        else
-                            previewController.buffer_previewer_maker(filepath, bufnr, opts)
-                        end
-                    end)
-                end
-
-
-                require('telescope').setup {
-                    defaults = {
-                        buffer_previewer_maker = new_maker,
-                    }
-                }
-            end
+                require('telescope').load_extension('changed_files')
+            end,
+            keys = {
+                {
+                    "<leader>of", function()
+                        local builtin = require('telescope.builtin')
+                        builtin.find_files({})
+                    end,
+                    desc = "Search all files"
+                },
+                {
+                    "<leader>pf", function()
+                        local builtin = require('telescope.builtin')
+                        builtin.git_files({})
+                    end,
+                    desc = "Search all git tracked files"
+                },
+                {
+                    "<leader>ps", function()
+                        local builtin = require('telescope.builtin')
+                        builtin.live_grep({path_display = {"tail"}})
+                    end,
+                    desc = "Search for string in project"
+                },
+                {
+                    "<leader>p*", function()
+                        local builtin = require('telescope.builtin')
+                        builtin.grep_string({search = vim.fn.expand("<cword>")})
+                    end,
+                    desc = "Search for string in project from currently hovered word"
+                },
+                {
+                    "<leader>ps", function()
+                        local builtin = require('telescope.builtin')
+                        builtin.live_grep({path_display = {"tail"}})
+                    end,
+                    desc = "Search for string in project"
+                },
+                {
+                    "<leader>ps", function()
+                        local builtin = require('telescope.builtin')
+                        builtin.live_grep({path_display = {"tail"}})
+                    end,
+                    desc = "Search for string in project"
+                },
+                {
+                    "<leader>pg", "<cmd>Telescope changed_files<cr>",
+                    desc = "Search for string in project"
+                },
+            }
         },
         {
             'nvim-telescope/telescope-fzf-native.nvim',

@@ -77,8 +77,8 @@ return {
             },
             {
                 "<leader>?", function()
-                    local dap = require("dap")
-                    dap.eval(nil, { enter = true })
+                    local dapui = require("dapui")
+                    dapui.eval(nil, { enter = true })
                 end,
                 desc = "Evaluate symbol"
             },
