@@ -60,3 +60,7 @@ set -o vi
 
 
 
+
+if [ -f "$HOME/.local/share/dnvm/env" ]; then
+    . "$HOME/.local/share/dnvm/env"
+fi
