@@ -11,7 +11,7 @@ return {
         "hrsh7th/nvim-cmp",
         "j-hui/fidget.nvim",
     },
-
+    lazy = false,
     config = function()
         require("conform").setup({
             formatters_by_ft = {
@@ -81,8 +81,8 @@ return {
                 end, {"i", "s"}),
             }),
             sources = cmp.config.sources({
+                { name = "codeium" },
                 { name = 'nvim_lsp' },
-            }, {
                 { name = 'buffer' },
             })
         })

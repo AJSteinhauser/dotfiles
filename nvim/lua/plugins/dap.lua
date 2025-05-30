@@ -24,28 +24,40 @@ return {
             setDapDefaults()
 
             local dap = require("dap")
-            local ui = require("dapui")
-            local virtualDapText = require("nvim-dap-virtual-text")
 
-            ui.setup()
-            virtualDapText.setup()
-
+            -- dap.adapters.coreclr = {
+            --     type = 'executable',
+            --     command = 'arch',
+            --     args = {'/Users/aj.steinhauser/.debuggers/netcoredbg/src/netcoredbg', '--interpreter=vscode'}
+            -- }
             dap.adapters.coreclr = {
                 type = 'executable',
-                command = '/home/aj/.debuggers/netcoredbg/netcoredbg',
-                args = {'--interpreter=vscode'}
+                command = '/Users/aj.steinhauser/.debuggers/netcoredbg/src/netcoredbg',
+                args = {'--interpreter=vscode', '--log=/Users/aj.steinhauser/netcoredbg.log'}
             }
+
+            dap.set_log_level('DEBUG')
+            vim.fn.setenv('DAP_LOG', vim.fn.stdpath('cache') .. '/dap.log')
 
             dap.configurations.cs = {
                 {
                     type = "coreclr",
                     name = "launch - netcoredbg",
                     request = "launch",
-                    program = function()
-                        return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net8.0/Lockton_Services.dll', 'file')
-                    end,
+                    program = "/Users/aj.steinhauser/locktonre-sage-services-standalone/Lockton_Services/bin/Debug/net8.0/Lockton_Services.dll"
                 },
             }
+
+            dap.set_log_level('DEBUG')
+            -- Optionally, specify the log file location (default is in the Neovim cache directory)
+            vim.fn.setenv('DAP_LOG', vim.fn.stdpath('cache') .. '/dap.log')
+
+            local ui = require("dapui")
+            local virtualDapText = require("nvim-dap-virtual-text")
+
+            ui.setup()
+            virtualDapText.setup()
+
 
             dap.listeners.before.attach.dapui_config = function()
                 ui.open()
@@ -83,49 +95,49 @@ return {
                 desc = "Evaluate symbol"
             },
             {
-                "<C-Bslash>", function()
+                "<A-Bslash>", function()
                     local dap = require("dap")
                     dap.continue()
                 end,
                 desc = "Continue"
             },
             {
-                "<C-Down>", function()
+                "<A-Down>", function()
                     local dap = require("dap")
                     dap.step_into()
                 end,
                 desc = "Step into"
             },
             {
-                "<C-Right>", function()
+                "<A-Right>", function()
                     local dap = require("dap")
                     dap.step_over()
                 end,
                 desc = "Step over"
             },
             {
-                "<C-Up>", function()
+                "<A-Up>", function()
                     local dap = require("dap")
                     dap.step_out()
                 end,
                 desc = "Step out"
             },
             {
-                "<C-Left>", function()
+                "<A-Left>", function()
                     local dap = require("dap")
                     dap.step_back()
                 end,
                 desc = "Step back"
             },
             {
-                "<C-F10>", function()
+                "<A-F10>", function()
                     local dap = require("dap")
                     dap.set_exception_breakpoints()
                 end,
                 desc = "Set exceptions breakpoint"
             },
             {
-                "<C-F12>", function()
+                "<A-F12>", function()
                     local dap = require("dap")
                     dap.restart()
                 end,

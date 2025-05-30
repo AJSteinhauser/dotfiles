@@ -19,6 +19,22 @@ else
   brew install bat
 fi
 
+if command -v ripgrep >/dev/null 2>&1; then
+  echo "✅ ripgrep is installed."
+else
+  echo "❌ ripgrep is not installed."
+  echo "🛠️ Installing ripgrep now..."
+  brew install ripgrep
+fi
+
+if command -v cloc >/dev/null 2>&1; then
+  echo "✅ cloc is installed."
+else
+  echo "❌ cloc is not installed."
+  echo "🛠️ Installing cloc now..."
+  brew install cloc
+fi
+
 if command -v tmux >/dev/null 2>&1; then
   echo "✅ tmux is installed."
 else
