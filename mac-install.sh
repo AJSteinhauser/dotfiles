@@ -9,6 +9,9 @@ else
 k
   echo "🛠️ Installing homebrew now..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo >> /Users/ajsteinhauser/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/ajsteinhauser/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 if command -v bat >/dev/null 2>&1; then
@@ -19,7 +22,7 @@ else
   brew install bat
 fi
 
-if command -v ripgrep >/dev/null 2>&1; then
+if command -v rg >/dev/null 2>&1; then
   echo "✅ ripgrep is installed."
 else
   echo "❌ ripgrep is not installed."
@@ -60,6 +63,38 @@ else
   mkdir "$HOME/.config"
 fi
 
+if command -v ghostty >/dev/null 2>&1; then
+  echo "✅ ghostty is installed."
+else
+  echo "❌ ghostty is not installed."
+  echo "🛠️ Installing ghostty now..."
+  brew install --cask ghostty
+fi
+
+if command -v zsh >/dev/null 2>&1; then
+  echo "✅ zsh is installed."
+else
+  echo "❌ zsh is not installed."
+  echo "🛠️ Installing zsh now..."
+  brew install zsh
+fi
+
+
+if command -v node >/dev/null 2>&1; then
+  echo "✅ node is installed."
+else
+  echo "❌ node is not installed."
+  echo "🛠️ Installing node now..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  \. "$HOME/.nvm/nvm.sh"
+  nvm install 22
+  node -v 
+  nvm current 
+  npm -v 
+fi
+
+
+
 # Linkers
 echo "🛠️ linking neovim config"
 ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
@@ -73,10 +108,13 @@ ln -s "$HOME/.dotfiles/.tmux" "$HOME/.tmux"
 
 
 echo "🛠️ Getting latest tmux plugin manager"
-rm -rf .tmux/plugins/tpm
+rm -rf $HOME/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
+rm -rf $HOME/.config/tmux/plugins/catppuccin
 mkdir -p "$HOME/.config/tmux/plugins/catppuccin"
 git clone -b v2.1.2 https://github.com/catppuccin/tmux.git "$HOME/.config/tmux/plugins/catppuccin/tmux"
 
-tmux source "$HOME/.tmux.conf"
+tmux new-session -s tmp "tmux source '$HOME/.tmux.conf' &&  ~/.tmux/plugins/tpm/bin/install_plugins && exit"
+
+exit
