@@ -93,7 +93,8 @@ else
   npm -v 
 fi
 
-
+echo "🛠️ insalling oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Linkers
 echo "🛠️ linking neovim config"

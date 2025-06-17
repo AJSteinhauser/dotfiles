@@ -32,7 +32,7 @@ return {
             -- }
             dap.adapters.coreclr = {
                 type = 'executable',
-                command = '/Users/aj.steinhauser/.debuggers/netcoredbg/src/netcoredbg',
+                command = 'netcoredbg',
                 args = {'--interpreter=vscode', '--log=/Users/aj.steinhauser/netcoredbg.log'}
             }
 

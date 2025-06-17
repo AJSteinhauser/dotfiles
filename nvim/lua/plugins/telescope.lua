@@ -54,13 +54,6 @@ return {
                     desc = "Search all git tracked files"
                 },
                 {
-                    "<leader>ps", function()
-                        local builtin = require('telescope.builtin')
-                        builtin.live_grep({path_display = {"tail"}})
-                    end,
-                    desc = "Search for string in project"
-                },
-                {
                     "<leader>p*", function()
                         local builtin = require('telescope.builtin')
                         builtin.grep_string({search = get_visual_selection()})
@@ -77,9 +70,9 @@ return {
                     desc = "Search for string in project from currently hovered word"
                 },
                 {
-                    "<leader>ps", function()
+                    "<leader>pr", function()
                         local builtin = require('telescope.builtin')
-                        builtin.live_grep({path_display = {"tail"}})
+                        builtin.resume()
                     end,
                     desc = "Search for string in project"
                 },
