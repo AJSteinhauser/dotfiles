@@ -1,4 +1,22 @@
 
+local function show_build_output(output)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(output, '\n'))
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.5)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+  vim.api.nvim_open_win(buf, true, {
+    relative = 'editor',
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = 'minimal',
+    border = 'rounded',
+  })
+end
+
 local function setDapDefaults()
     vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#191724' })
     vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#191724' })
@@ -41,13 +59,38 @@ return {
 
             dap.configurations.cs = {
                 {
-                    type = "coreclr",
-                    name = "launch - netcoredbg",
-                    request = "launch",
-                    program = "/Users/aj.steinhauser/locktonre-sage-services-standalone/Lockton_Services/bin/Debug/net8.0/Lockton_Services.dll"
+                    type = 'coreclr',
+                    name = 'Launch - netcoredbg',
+                    request = 'launch',
+                    program = function()
+                        local cwd = vim.fn.getcwd()
+                        local project_name = vim.fn.fnamemodify(cwd, ":t")
+                        local dll_path = cwd .. "/bin/Debug/net8.0/" .. project_name .. ".dll"
+                        if vim.fn.filereadable(dll_path) == 1 then
+                            return dll_path
+                        else
+                            error("Main DLL not found: " .. dll_path)
+                        end
+                    end,
+                    cwd = '${workspaceFolder}',
+                    stopAtEntry = false,
+                    before = function(config)
+                        local cwd = vim.fn.getcwd()
+                        local build_cmd = 'dotnet build'
+                        print('Running: ' .. build_cmd .. ' in ' .. cwd)
+                        local result = vim.fn.system(build_cmd)
+                        local exit_code = vim.v.shell_error
+                        if exit_code ~= 0 then
+                            print('dotnet build failed')
+                            show_build_output(result)
+                            return false
+                        else
+                            print('dotnet build succeeded')
+                            return true
+                        end
+                    end,
                 },
             }
-
             dap.set_log_level('DEBUG')
             -- Optionally, specify the log file location (default is in the Neovim cache directory)
             vim.fn.setenv('DAP_LOG', vim.fn.stdpath('cache') .. '/dap.log')
