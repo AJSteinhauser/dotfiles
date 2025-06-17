@@ -1,20 +1,29 @@
 
-local function show_build_output(output)
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(output, '\n'))
-  local width = math.floor(vim.o.columns * 0.8)
-  local height = math.floor(vim.o.lines * 0.5)
-  local row = math.floor((vim.o.lines - height) / 2)
-  local col = math.floor((vim.o.columns - width) / 2)
-  vim.api.nvim_open_win(buf, true, {
-    relative = 'editor',
-    width = width,
-    height = height,
-    row = row,
-    col = col,
-    style = 'minimal',
-    border = 'rounded',
-  })
+local function show_build_output_colored(output)
+  -- Create a new buffer and open it in a new tab
+  vim.cmd('tabnew')
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
+  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  vim.api.nvim_buf_set_option(buf, 'swapfile', false)
+  vim.api.nvim_buf_set_name(buf, 'Build Output')
+
+  -- Set the lines
+  local lines = vim.split(output, '\n')
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+  -- Define highlight groups if not already defined
+  vim.cmd('highlight BuildError guifg=#ff5555 ctermfg=Red')
+  vim.cmd('highlight BuildWarning guifg=#f1fa8c ctermfg=Yellow')
+
+  -- Apply highlights for errors and warnings
+  for i, line in ipairs(lines) do
+    if line:lower():find('error') then
+      vim.api.nvim_buf_add_highlight(buf, -1, 'BuildError', i - 1, 0, -1)
+    elseif line:lower():find('warning') then
+      vim.api.nvim_buf_add_highlight(buf, -1, 'BuildWarning', i - 1, 0, -1)
+    end
+  end
 end
 
 local function setDapDefaults()
@@ -43,11 +52,6 @@ return {
 
             local dap = require("dap")
 
-            -- dap.adapters.coreclr = {
-            --     type = 'executable',
-            --     command = 'arch',
-            --     args = {'/Users/aj.steinhauser/.debuggers/netcoredbg/src/netcoredbg', '--interpreter=vscode'}
-            -- }
             dap.adapters.coreclr = {
                 type = 'executable',
                 command = 'netcoredbg',
@@ -77,12 +81,13 @@ return {
                     before = function(config)
                         local cwd = vim.fn.getcwd()
                         local build_cmd = 'dotnet build'
+
                         print('Running: ' .. build_cmd .. ' in ' .. cwd)
                         local result = vim.fn.system(build_cmd)
                         local exit_code = vim.v.shell_error
                         if exit_code ~= 0 then
                             print('dotnet build failed')
-                            show_build_output(result)
+                            show_build_output_colored(result)
                             return false
                         else
                             print('dotnet build succeeded')
