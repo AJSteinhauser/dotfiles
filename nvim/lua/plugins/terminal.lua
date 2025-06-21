@@ -2,7 +2,15 @@
 return {
     {
         'akinsho/toggleterm.nvim',
-        config = true,
+        config = function ()
+            vim.api.nvim_set_keymap(
+                't',
+                '<C-h>',
+                [[<C-\><C-n>:ToggleTerm<CR>]],
+                { noremap = true, silent = true }
+            )
+            require("toggleterm").setup()
+        end,
         version = "*",
         keys = {
             {
@@ -11,13 +19,10 @@ return {
                 desc="Open floating toggle term windows"
             },
             {
-                "<C-j>",
-                function()
-                    print("Here")
-                    require("toggleterm.terminal").Terminal.Toggle()
-                end,
-                desc="Minimize terminal"
-            }
+                "<C-h>",
+                "<cmd>ToggleTerm",
+                desc="Open floating toggle term windows"
+            },
         },
     }
 }

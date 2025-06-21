@@ -11,7 +11,6 @@ return {
         "hrsh7th/nvim-cmp",
         "j-hui/fidget.nvim",
     },
-    lazy = false,
     config = function()
         require("conform").setup({
             formatters_by_ft = {
@@ -30,9 +29,12 @@ return {
         require("mason").setup()
 
         local on_attach = function(client, bufnr)
+            print("LSP attached: " .. client.name)
             local opts = { buffer = bufnr, remap = false }
-            vim.keymap.set("n", "<leader>gd", function() vim.lsp.buf.definition() end, opts)
-            vim.keymap.set("n", "<leader>gi", function() vim.lsp.buf.implementation() end, opts)
+            vim.keymap.set("n", "gd", function()
+                vim.lsp.buf.definition()
+            end, opts)
+            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
             vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
             vim.keymap.set("n", "<leader>vc", function() vim.lsp.buf.references() end, opts) -- replaced with telescope
@@ -52,7 +54,7 @@ return {
                         capabilities = capabilities,
                         on_attach = on_attach
                     }
-                end,
+                end
             }
         })
 
@@ -98,5 +100,62 @@ return {
                 prefix = "",
             },
         })
-    end
+    end,
+    keys = {
+        {
+            "gd", function()
+                vim.lsp.buf.definition()
+            end,
+            desc = "Step back"
+        },
+        {
+            "gi",
+            function()
+                vim.lsp.buf.implementation()
+            end,
+            desc = "Go to implementation"
+        },
+        {
+            "K",
+            function()
+                vim.lsp.buf.hover()
+            end,
+            desc = "Show hover documentation"
+        },
+        {
+            "<leader>vws",
+            function()
+                vim.lsp.buf.workspace_symbol()
+            end,
+            desc = "Search workspace symbols"
+        },
+        {
+            "<leader>vc",
+            function()
+                vim.lsp.buf.references()
+            end,
+            desc = "Show references"
+        },
+        {
+            "<leader>vca",
+            function()
+                vim.lsp.buf.code_action()
+            end,
+            desc = "Code action"
+        },
+        {
+            "<leader>vrn",
+            function()
+                vim.lsp.buf.rename()
+            end,
+            desc = "Rename symbol"
+        },
+        {
+            "<leader>vff",
+            function()
+                vim.lsp.buf.format()
+            end,
+            desc = "Format file"
+        },
+    }
 }
