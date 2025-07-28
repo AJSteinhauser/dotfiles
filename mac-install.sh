@@ -22,6 +22,14 @@ else
   brew install bat
 fi
 
+if command -v tms >/dev/null 2>&1; then
+  echo "✅ tms is installed."
+else
+  echo "❌ tms is not installed."
+  echo "🛠️ Installing tms now..."
+  brew install tms
+fi
+
 if command -v rg >/dev/null 2>&1; then
   echo "✅ ripgrep is installed."
 else
