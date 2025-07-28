@@ -2,11 +2,19 @@ return {
     {
         "rose-pine/neovim", 
         name = "rose-pine",
-        config = function()
-            vim.cmd("colorscheme rose-pine")
-        end,
+        -- config = function()
+        --     vim.cmd("colorscheme rose-pine")
+        -- end,
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
+        -- priority = 1000, -- make sure to load this before all the other start plugins
+    },
+    { 
+        'dasupradyumna/midnight.nvim',
+        config = function()
+            vim.cmd("colorscheme midnight")
+        end,
+        lazy = false,
+        priority = 1000
     },
     {
         "nvim-treesitter/nvim-treesitter",

@@ -1,5 +1,3 @@
-vim.lsp.set_log_level("debug")
-
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "<leader>y", "\"+y")
