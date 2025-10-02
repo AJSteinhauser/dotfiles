@@ -16,6 +16,7 @@ return {
             "hrsh7th/nvim-cmp",
             "j-hui/fidget.nvim",
         },
+        event = 'BufEnter',
         config = function()
             require("conform").setup({
                 formatters_by_ft = {

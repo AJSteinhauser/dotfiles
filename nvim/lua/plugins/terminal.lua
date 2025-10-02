@@ -24,5 +24,5 @@ return {
                 desc="Open floating toggle term windows"
             },
         },
-    }
+    },
 }
