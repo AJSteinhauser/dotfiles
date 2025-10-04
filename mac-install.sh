@@ -23,11 +23,11 @@ else
 fi
 
 if command -v tms >/dev/null 2>&1; then
-  echo "✅ tms is installed."
+  echo "✅ tmux-sessionizer is installed."
 else
-  echo "❌ tms is not installed."
+  echo "❌ tmux-sessionizer is not installed."
   echo "🛠️ Installing tms now..."
-  brew install tms
+  brew install tmux-sessionizer
 fi
 
 if command -v rg >/dev/null 2>&1; then
