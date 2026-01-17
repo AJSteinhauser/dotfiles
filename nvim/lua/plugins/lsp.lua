@@ -52,16 +52,32 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
+                    "basedpyright",
                 },
                 handlers = {
                     function(server_name) -- default handler (optional)
-                        require("lspconfig")[server_name].setup {
+                        if server_name == "basedpyright" then return end
+                        vim.lsp.config(server_name, {
                             capabilities = capabilities,
                             on_attach = on_attach
-                        }
-                    end
+                        })
+                        vim.lsp.enable(server_name)
+                    end,
                 }
             })
+
+            vim.lsp.config("basedpyright", {
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = {
+                    basedpyright = {
+                        analysis = {
+                            typeCheckingMode = "standard",
+                        },
+                    },
+                },
+            })
+            vim.lsp.enable("basedpyright")
 
             cmp.setup({
                 mapping = cmp.mapping.preset.insert({

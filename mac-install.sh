@@ -101,6 +101,29 @@ else
   npm -v 
 fi
 
+# https://github.com/romkatv/powerlevel10k
+# download powerlevel10k config files
+# check if powerline10k exists in ~/.configs/powerline10k
+
+if test -d "$HOME/.oh-my-zsh"; then 
+  echo "✅ oh-my-zsh folder exists"
+else
+  echo "❌ oh-my-zsh folder does not exists"
+  echo "🛠️ creating oh-my-zsh folder"
+  mkdir "$HOME/.oh-my-zsh"
+fi
+
+if command -v powerlevel10k >/dev/null 2>&1; then
+  echo "✅ powerlevel10k is installed."
+else
+  echo "❌ powerlevel10k is not installed."
+  echo "🛠️ Installing powerlevel10k now..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+
+
+
 echo "🛠️ insalling oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -110,6 +133,9 @@ ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
 
 echo "🛠️ linking gitconfig config"
 ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
+
+echo "🛠️ linking .zshrc config"
+ln -s "$HOME/.dotfiles/.zshrc" "$HOME/.zshrc"
 
 echo "🛠️ linking tmux config"
 ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf"
