@@ -34,7 +34,6 @@ return {
             require("fidget").setup({})
 
             local on_attach = function(client, bufnr)
-                print("LSP attached: " .. client.name)
                 local opts = { buffer = bufnr, remap = false }
                 vim.keymap.set("n", "gd", function()
                     vim.lsp.buf.definition()
@@ -53,10 +52,12 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "basedpyright",
+                    "luau_lsp",
                 },
                 handlers = {
                     function(server_name) -- default handler (optional)
                         if server_name == "basedpyright" then return end
+                        if server_name == "luau_lsp" then return end
                         vim.lsp.config(server_name, {
                             capabilities = capabilities,
                             on_attach = on_attach
@@ -65,6 +66,28 @@ return {
                     end,
                 }
             })
+
+            local roblox_types = os.getenv("HOME") .. "/.cache/luau-lsp/globalTypes.d.luau"
+            local luau_cmd = { "luau-lsp", "lsp" }
+            if vim.fn.filereadable(roblox_types) == 1 then
+                vim.list_extend(luau_cmd, { "--definitions", roblox_types })
+            end
+
+            vim.lsp.config("luau_lsp", {
+                cmd = luau_cmd,
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = {
+                    ["luau-lsp"] = {
+                        completion = {
+                            imports = {
+                                enabled = true,
+                            },
+                        },
+                    },
+                },
+            })
+            vim.lsp.enable("luau_lsp")
 
             vim.lsp.config("basedpyright", {
                 capabilities = capabilities,
